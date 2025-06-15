@@ -5,6 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Global Risk Index</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .map-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 2rem;
+      overflow: hidden;
+    }
+
+    .map {
+      width: 90vw;
+      height: auto;
+      aspect-ratio: 2 / 1;
+      border: none;
+    }
+
+    #tooltip {
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 6px 10px;
+      border-radius: 8px;
+      pointer-events: none;
+      font-size: 14px;
+      display: none;
+      z-index: 9999;
+    }
+  </style>
 </head>
 <body>
   <div class="hero">
@@ -22,7 +50,8 @@
   </div>
 
   <div class="map-container">
-    <iframe src="https://www.gayretardedfaggots.com/assets/world.svg" class="map" id="risk-map"></iframe>
+    <object data="https://www.gayretardedfaggots.com/assets/world.svg" type="image/svg+xml" class="map" id="risk-map"></object>
+    <div id="tooltip"></div>
   </div>
 
   <div class="breakdown" id="risk-breakdown">
@@ -30,5 +59,35 @@
   </div>
 
   <script src="script.js"></script>
+  <script>
+    const tooltip = document.getElementById("tooltip");
+    const mapObject = document.getElementById("risk-map");
+
+    mapObject.addEventListener("load", () => {
+      const svgDoc = mapObject.contentDocument;
+      const countries = svgDoc.querySelectorAll("path, g");
+
+      countries.forEach(el => {
+        el.style.transition = "all 0.2s ease";
+        el.addEventListener("mouseenter", (e) => {
+          el.style.fill = "#999";
+          el.style.transform = "scale(1.02)";
+          tooltip.style.display = "block";
+          tooltip.textContent = `Sample Data: ${el.id || 'Unknown'}`;
+        });
+
+        el.addEventListener("mousemove", (e) => {
+          tooltip.style.left = `${e.pageX + 10}px`;
+          tooltip.style.top = `${e.pageY + 10}px`;
+        });
+
+        el.addEventListener("mouseleave", () => {
+          el.style.fill = "";
+          el.style.transform = "scale(1)";
+          tooltip.style.display = "none";
+        });
+      });
+    });
+  </script>
 </body>
 </html>
