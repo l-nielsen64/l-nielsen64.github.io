@@ -2,68 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GayRetardedFaggots</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      color: #333;
-      padding: 20px;
-      text-align: center;
-    }
-
-    header {
-      background: #007acc;
-      color: white;
-      padding: 40px 20px;
-    }
-
-    header h1 {
-      margin-bottom: 10px;
-    }
-
-    main {
-      margin: 40px auto;
-      max-width: 600px;
-    }
-
-    footer {
-      margin-top: 40px;
-      font-size: 0.9em;
-      color: #777;
-    }
-
-    a {
-      color: #007acc;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Risk Index</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>Welcome to GayRetardedFaggots!</h1>
-    <p>This is a basic static website on GitHub Pages.</p>
-  </header>
+  <div class="hero">
+    <h1 id="risk-score">0%</h1>
+  </div>
 
-  <main>
-    <h2>Hello, world!</h2>
-    <p>This site is hosted with <strong>GitHub Pages</strong>.</p>
-    <p>Feel free to edit this page and push changes to see them live.</p>
-  </main>
+  <div class="risk-bar">
+    <button class="risk-btn" data-type="climate">Climate</button>
+    <button class="risk-btn" data-type="nuclear">Nuclear</button>
+    <button class="risk-btn" data-type="pandemic">Pandemic</button>
+    <button class="risk-btn" data-type="cyber">Cyber</button>
+    <button class="risk-btn" data-type="ai">AI</button>
+    <button class="risk-btn" data-type="natural">Natural Disaster</button>
+    <button class="risk-btn" data-type="governance">Governance</button>
+  </div>
 
-  <footer>
-    <p>Created with <a href="https://github.com/">GitHub</a></p>
-  </footer>
+  <div class="map-container">
+    <iframe src="world.svg" class="map" id="risk-map"></iframe>
+  </div>
+
+  <div class="breakdown" id="risk-breakdown">
+    <!-- Dynamic content inserted here -->
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
